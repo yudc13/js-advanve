@@ -24,9 +24,13 @@ function curry(fn) {
     return function inner(...args) {
         return args.length >= len
             ? fn.apply(this, args)
-            : (...innerArgs) => inner(...args, ...innerArgs)
+            : (...innerArgs) => inner.call(this, ...args, ...innerArgs)
     }
 }
 
-const curryAdd = curry(add)
+function currying(fn, ...rest) {
+    return rest.length >= fn.length ? fn.apply(this, rest) : (...args) => currying(fn, ...rest, ...args)
+}
+
+const curryAdd = currying(add)
 console.log(curryAdd(1)(2)(3))
