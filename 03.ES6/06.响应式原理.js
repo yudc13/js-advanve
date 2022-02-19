@@ -42,6 +42,10 @@ const obj = {
 	age: 18
 }
 
+const info = {
+	address: '北京'
+}
+
 const objProxy = new Proxy(obj, {
 	get(target, key, receiver) {
 		const dep = getDepend(target, key)
@@ -68,6 +72,11 @@ watchFn(function () {
 watchFn(function () {
 	console.log('我是第三个函数')
 	console.log('my name is ', objProxy.name)
+})
+
+watchFn(function () {
+	console.log('我是第四个函数')
+	console.log('my address is ')
 })
 
 objProxy.name = 'tom'
