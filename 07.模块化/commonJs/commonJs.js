@@ -21,3 +21,10 @@ console.log(testExports, testExports.test)
  */
 console.log('main a ', require('./a').x)
 console.log('main b ', require('./b').x)
+
+const info = require('./test-ref')
+
+console.log(info)
+setTimeout(() => {
+	console.log('修改后的值: ', info)
+}, 2000)
